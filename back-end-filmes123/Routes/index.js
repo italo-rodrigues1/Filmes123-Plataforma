@@ -6,10 +6,10 @@ const routes = Router();
 routes.get('/', (req, res) => {
     res.send('API Filmes123!')
 })
-routes.get('/usuario/:id', usuarioController.getUsuario);
-routes.get('/usuario', usuarioController.getUsuario);
+routes.get('/usuario/:id', usuarioController.oneUser);
+routes.get('/usuario', usuarioController.allUser);
 
-routes.post('/usuario',usuarioController.createUsuario);
+routes.post('/usuario',usuarioController.createUser);
 
 routes.put('/usuario/:id', usuarioController.update);
 
