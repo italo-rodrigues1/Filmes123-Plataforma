@@ -1,5 +1,4 @@
 const Yup = require('yup');
-const knex = require('../database/index');
 
 
 
