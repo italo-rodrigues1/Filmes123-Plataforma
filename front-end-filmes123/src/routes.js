@@ -1,18 +1,21 @@
 import { BrowserRouter,Route,Switch } from "react-router-dom";
 import Home from "./views/Home";
 import Login from "./views/Login";
-import Cadastro from "./views/Cadastro";
 import Filmes from "./views/Filmes";
+import { AuthContextProvider } from './context';
 
-const  Routes = () => ( 
+const Routes = () => ( 
+
   <BrowserRouter>
-    <Switch>
-      <Route path="/" exact component={Login} />
-      <Route path="/filmes" component={Filmes} />
-      <Route path="/home" component={Home} />
-      <Route path="/cadastro" component={Cadastro} />
-    </Switch>
+    <AuthContextProvider>
+      <Switch>
+        <Route path="/" exact component={Login} />
+        <Route path="/filmes" exact component={Filmes} />
+        <Route path="/home" exact component={Home} />
+      </Switch>
+    </AuthContextProvider>
   </BrowserRouter>
+
 )
 
 export default Routes;

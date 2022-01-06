@@ -1,7 +1,15 @@
-import styled from 'styled-components';
-
-export const ContainerStyled = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
+import { createGlobalStyle } from 'styled-components';
+ 
+const GlobalStyle = createGlobalStyle`
+  *{
+    margin: 0;
+    padding: 0;
+    font-family: Open-Sans, Helvetica, Sans-Serif;
+    box-sizing: border-box;
+  }
+  body{
+    background-color: #101010;
+  }
 `;
+ 
+export default GlobalStyle;

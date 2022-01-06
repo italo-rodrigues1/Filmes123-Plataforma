@@ -1,50 +1,39 @@
 import {useState,useEffect} from 'react';
-import api  from '../services/api';
+import {api}  from '../../services/api';
 import { useHistory} from "react-router-dom";
 
-export default function useAuth(){
+export default function LoginUser(){
     const [authenticated,setAuthenticated] = useState(false);	
     const history = useHistory();
-    const [senha,setSenha] = useState('');
-    const [email,setEmail] = useState('');
+    const [senhaD,setSenhaD] = useState('');
+    const [emailD,setEmailD] = useState('');
     const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
+    // useEffect(() => {
+    //     const token = localStorage.getItem('token');
     
-        if (token) {
-          api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-          setAuthenticated(true);
-        }
+    //     if (token) {
+    //       api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+    //       setAuthenticated(true);
+    //     }
     
-        setLoading(false);
-    }, []);
+    //     setLoading(false);
+    // }, []);
 
     const handleLogin = async(e) => {
         e.preventDefault();
         try{
-            const res = await api.post('/login',{email:email,password:senha})
+            const res = await api.post('/login',{email:emailD,password:senhaD})
             localStorage.setItem('token',JSON.stringify(res.token));
             api.defaults.headers.Authorization = `Bearer ${res.token}`;
-            setAuthenticated(true);
+            if(res)setAuthenticated(true);
             console.log(res)
             history.push("/ideias");
         }catch(err){
             console.log(err);
         }
-    //    const { user:{token} } = await  api.post('/login');
-    //    api.post('/login',{email:email,password:senha})
-    //    .then(res => {
-    //         localStorage.setItem('token',JSON.stringify(res.token));
-    //         api.defaults.headers.Authorization = `Bearer ${res.token}`;
-    //         setAuthenticated(true);
-    //         console.log(res)
-    //         history.push("/ideias");
-    //    }).catch(error => {error.message = 'Usuário ou senha inválidos'});
-
        
     }
-    
+
     function handleLogout(){
         setAuthenticated(false)
         localStorage.removeItem('token');
@@ -54,5 +43,5 @@ export default function useAuth(){
     }
 
 
-    return { authenticated,loading,setAuthenticated,handleLogin,handleLogout,senha,setSenha,email,setEmail };
+    return { authenticated,loading,setAuthenticated,handleLogin,handleLogout,senhaD,setSenhaD,emailD,setEmailD};
 }

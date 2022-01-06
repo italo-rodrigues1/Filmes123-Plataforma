@@ -1,11 +1,16 @@
-import { Container } from './styles'
+import { Container} from './styles'
+import Header from '../../components/Header';
+import FormLogin from '../../components/FormLogin';
+import GlobalStyle from '../../globalStyled';
 
-function Login() {
+export default function Login() {
   return (
-    <Container>
-      <h1>Login</h1>
-    </Container>
+    <>
+      <GlobalStyle/>
+      <Container>
+        <Header/>
+        <FormLogin/>
+      </Container>
+    </>
  );  
 }
-
-export default Login;

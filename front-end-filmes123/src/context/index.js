@@ -1,14 +1,14 @@
 import { createContext } from 'react';
-import useUserAuth from '../hooks/user';
+import LoginUser from '../hooks/user';
 
 const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
 
-    // const { user, setUser } = useUserAuth();
-    
+    const { senhaD,setSenhaD,emailD,setEmailD,handleLogin,handleLogout } = LoginUser();
+
     return (
-        <AuthContext.Provider value={}>
+        <AuthContext.Provider value={{senhaD,setSenhaD,emailD,setEmailD,handleLogin,handleLogout}}>
             {children}
         </AuthContext.Provider>
     );
