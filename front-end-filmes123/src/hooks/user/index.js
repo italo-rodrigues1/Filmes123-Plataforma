@@ -1,10 +1,10 @@
 import {useState,useEffect} from 'react';
 import {api}  from '../../services/api';
-import { useHistory} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 export default function LoginUser(){
     const [authenticated,setAuthenticated] = useState(false);	
-    const history = useHistory();
+    const navigate = useNavigate();
     const [senhaD,setSenhaD] = useState('');
     const [emailD,setEmailD] = useState('');
     const [loading, setLoading] = useState(true);
@@ -27,7 +27,7 @@ export default function LoginUser(){
             api.defaults.headers.Authorization = `Bearer ${res.token}`;
             if(res)setAuthenticated(true);
             console.log(res)
-            history.push("/ideias");
+            navigate("/ideias");
         }catch(err){
             console.log(err);
         }
@@ -39,7 +39,7 @@ export default function LoginUser(){
         localStorage.removeItem('token');
 
         api.defaults.headers.Authorization = undefined;
-        history.push("/");
+        navigate("/");
     }
 
 
